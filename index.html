@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+  <style>
+    .todo{
+        text-align: center;
+        margin-top: 20px;
+        list-style-type: none;
+    }
+    .todo1{
+        text-align: center;
+        margin-top: 20px;
+        list-style-type: none;
+        margin: 10px;
+        color: brown;
+        font-size: x-large;
+        text-transform: uppercase;
+        margin: 30px;  
+        font-weight: 700;
+    }
+    body{
+        background:rgb(91, 91, 177);
+    }
+    .form{
+        padding: 20px;
+        border-radius: 10px; 
+    }
+    li button{
+      background:yellow;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px;
+     margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="todo">To-Do List</h1>
+<form class="todo">
+  <input type="text" id="task" placeholder="Add a new task" class="form">
+  <button type="button" onclick="addTask()" class="form">Add Task</button>
+</form>
+
+<ul id="taskList" class="todo1" ></ul>
+
+<script>
+  var taskList = document.getElementById("taskList");
+
+  function addTask() {
+    var task = document.getElementById("task").value;
+    var li = document.createElement("li");
+    li.innerHTML = task;
+    taskList.appendChild(li);
+    document.getElementById("task").value = "";
+    
+    //create edit button
+    var editBtn = document.createElement("button");
+    editBtn.innerHTML = "Edit";
+    editBtn.setAttribute("onclick", "editTask(this)");
+    li.appendChild(editBtn);
+
+    //create delete button
+    var deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "Delete","" ;
+    deleteBtn.setAttribute("onclick", "deleteTask(this)");
+    li.appendChild(deleteBtn);
+
+    //create complete button
+    var completeBtn = document.createElement("button");
+    completeBtn.innerHTML = "Complete";
+    completeBtn.setAttribute("onclick", "completeTask(this)");
+    li.appendChild(completeBtn);
+  }
+
+  function editTask(e) {
+    var val = e.parentNode.firstChild.nodeValue;
+    var newVal = prompt("Enter new task", val);
+    e.parentNode.firstChild.nodeValue = newVal;
+  }
+
+  function deleteTask(e) {
+    e.parentNode.remove();
+  }
+
+  function completeTask(e) {
+    e.parentNode.style.textDecoration = "line-through";
+  }
+</script>
+  
+</body>
+</html>
+
+
+
+
